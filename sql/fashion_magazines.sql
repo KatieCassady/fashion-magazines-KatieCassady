@@ -1,10 +1,18 @@
 SELECT *
 FROM orders
-JOIN subscriptions
-    ON orders.customer_id = subscriptions.customer_id;
+WHERE orders.order_status = 'unpaid';
 
 SELECT *
 FROM orders
-JOIN subscriptions
-  ON orders.subscription_id = subscriptions.subscription_id
-WHERE subscriptions.length >= 1
+JOIN customers
+	ON orders.order_id = customers.customer_id;
+
+SELECT *
+FROM subscriptions
+WHERE subscriptions.description = "unpaid",
+     subscriptions.subscription_length * subscriptions.price_per_month AS amount_due
+FROM orders
+GROUP BY customer_name AND amount_due;
+)
+ 
+PRINTF()
